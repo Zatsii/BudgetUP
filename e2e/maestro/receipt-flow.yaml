@@ -1,5 +1,5 @@
 # Receipt scan -> save -> expandable tile, on a fresh install.
-# Run with the dev server up and a simulator/emulator booted:  maestro test .maestro/receipt-flow.yaml
+# Run with the dev server up and a simulator/emulator booted:  maestro test e2e/maestro/receipt-flow.yaml
 # Needs the Berghotel test receipt as the first photo in the device's library (the flow picks the first one).
 appId: io.github.zatsii.budgetup
 ---

@@ -5,6 +5,9 @@ node_modules/
 .expo/
 dist/
 web-build/
+
+# Test coverage
+coverage/
 expo-env.d.ts
 
 # Generated native folders (Continuous Native Generation: `npx expo prebuild` recreates them)
@@ -58,8 +61,8 @@ yarn-error.*
 receipts/
 test-receipts/
 *.heic
-.maestro/**/*.png
-.maestro/**/*.jpg
+e2e/**/*.png
+e2e/**/*.jpg
 
 # OS and editor junk
 .DS_Store
@@ -69,6 +72,5 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
-!.vscode/settings.json
 
 example

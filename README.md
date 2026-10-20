@@ -64,11 +64,17 @@ src/
   app/          routes (Expo Router)
   screens/      screen components
   components/   UI pieces (platform splits as *.native.tsx / *.web.tsx)
+  hooks/        React hooks
+  constants/    theme, categories, receipt config
   storage/      SQLite schema, migrations and repositories
   utils/        pure, unit-tested logic + receipt and import pipelines
   __tests__/    node --test suites and OCR fixtures
 modules/
   receipt-ocr/  on-device OCR (Swift / Kotlin) returning text lines with positions
+e2e/
+  maestro/      end-to-end UI flows
+assets/         app icon (SVG source + generated PNGs) and images
+scripts/        developer scripts (see below)
 ```
 
 ## Getting started
@@ -103,8 +109,16 @@ The camera needs a real device.
 ```bash
 npm test             # unit tests
 npm run typecheck    # TypeScript
-maestro test .maestro/receipt-flow.yaml   # UI flow (needs a receipt photo in the library)
+npm run lint         # ESLint (Expo config)
+maestro test e2e/maestro/receipt-flow.yaml   # UI flow (needs a receipt photo in the library)
 ```
+
+### Scripts
+
+- `npm run icons` (`scripts/generate-icons.mjs`): regenerates every app icon PNG (iOS,
+  Android adaptive and monochrome, splash, favicon) from `assets/icon/icon-budgup.svg` using
+  headless Google Chrome. Set `CHROME_PATH` if Chrome isn't in the default macOS location.
+  Native icon changes need a rebuild.
 
 ### Environment
 
