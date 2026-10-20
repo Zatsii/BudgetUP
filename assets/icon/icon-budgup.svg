@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#12261d"/>
+  <g transform="translate(30,0)">
+    <!-- wallet depth layer -->
+    <rect x="170" y="242" width="560" height="600" rx="76" fill="#2f5a40"/>
+    <!-- wallet body -->
+    <rect x="170" y="220" width="560" height="600" rx="76" fill="#4a7c59"/>
+    <!-- top fold line -->
+    <path d="M170 312 H730" stroke="#3b6a4a" stroke-width="10" stroke-linecap="round"/>
+    <!-- clasp flap -->
+    <rect x="670" y="450" width="150" height="140" rx="46" fill="#3b6a4a" stroke="#12261d" stroke-width="10"/>
+    <circle cx="745" cy="520" r="26" fill="#eecb4b"/>
+    <!-- B centered in wallet body, dollar bar through its middle -->
+    <g transform="translate(-31,0)">
+      <path fill="#eecb4b" fill-rule="evenodd" d="M350 360 H480 C555 360 595 395 595 445 C595 485 572 508 538 518 C582 528 612 558 612 603 C612 650 572 680 495 680 H350 Z M420 410 V495 H480 C510 495 528 482 528 452 C528 424 510 410 480 410 Z M420 540 V630 H492 C530 630 545 615 545 585 C545 557 528 540 492 540 Z"/>
+      <rect x="465" y="322" width="32" height="396" rx="10" fill="#eecb4b"/>
+    </g>
+  </g>
+</svg>

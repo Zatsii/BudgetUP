@@ -1,0 +1,106 @@
+# Receipt scan -> save -> expandable tile, on a fresh install.
+# Run with the dev server up and a simulator/emulator booted:  maestro test .maestro/receipt-flow.yaml
+# Needs the Berghotel test receipt as the first photo in the device's library (the flow picks the first one).
+appId: io.github.zatsii.budgetup
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "\\+ Add expense"
+    timeout: 180000
+
+# --- Scan a receipt from the photo library ---
+- tapOn: "\\+ Add expense"
+- assertVisible: "Scan receipt"
+- tapOn: "Choose photo"
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "Photos"
+          timeout: 20000
+      - tapOn:
+          text: "Photo, .*"          # thumbnails in the iOS photo picker are labelled "Photo, <date>"
+          index: 0
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          visible: "Photos"
+          timeout: 20000
+      - tapOn:
+          text: "Photo taken on .*"  # first thumbnail in the Android photo picker
+          index: 0
+- extendedWaitUntil:
+    visible: "Filled in.*Review, then save\\."
+    timeout: 30000
+- assertVisible: "Scanned Berghotel Grosse Scheidegg.*"
+- assertVisible: "2 x Latte Macchiato  @ 4\\.50 = 9\\.00"
+- assertVisible: "Amount"
+- assertVisible: "Receipt attached.*4 items"
+- takeScreenshot: receipt-prefilled
+- scrollUntilVisible:
+    element:
+      id: "expense-save"
+    direction: DOWN
+- tapOn:
+    id: "expense-save"
+
+# --- Go to the receipt's month (July 2007) ---
+- extendedWaitUntil:
+    visible: "Spending by category"
+    timeout: 20000
+- tapOn: "Month: .*"
+- tapOn: "July"
+- tapOn: "Year: .*"
+- scrollUntilVisible:
+    element: "2007"
+    direction: DOWN
+- tapOn: "2007"
+- extendedWaitUntil:
+    visible: "Berghotel Grosse Scheidegg"
+    timeout: 10000
+- assertVisible: "54\\.50"
+- assertNotVisible: "CHF.*"                         # no currency shown
+- assertNotVisible: "Latte Macchiato.*"            # collapsed
+- assertNotVisible: ".*Items don’t add up"
+- takeScreenshot: receipt-tile-collapsed
+
+# --- Expand ---
+- tapOn: "Berghotel Grosse Scheidegg"
+- extendedWaitUntil:
+    visible: "2 x Latte Macchiato  @ 4\\.50 = 9\\.00"
+    timeout: 5000
+- assertVisible: "1 x Gloki  @ 5\\.00 = 5\\.00"
+- assertVisible: "1 x Schweinschnitzel  @ 22\\.00 = 22\\.00"
+- assertVisible: "1 x Chasspaetzli  @ 18\\.50 = 18\\.50"
+- assertVisible: "Incl\\. 7\\.6% VAT"
+- assertVisible: "3\\.85"
+- takeScreenshot: receipt-tile-expanded
+
+# --- Photo opens full screen ---
+- tapOn: "Receipt photo, opens full screen"
+- assertVisible: "Tap to close"
+- takeScreenshot: receipt-photo-full
+- tapOn: "Tap to close"
+- assertNotVisible: "Tap to close"
+
+# --- Edit the total: mismatch is flagged, not fixed ---
+- tapOn: "Edit"
+- extendedWaitUntil:
+    visible: "Save changes"
+    timeout: 10000
+- tapOn: "Amount"
+- eraseText: 10
+- inputText: "55.00"
+- hideKeyboard
+- tapOn:
+    id: "expense-save"
+- extendedWaitUntil:
+    visible: ".*Items don’t add up"
+    timeout: 10000
+- assertVisible: "55\\.00"
+- assertVisible: ".*add up to 54\\.50, but the total is 55\\.00.*"
+- takeScreenshot: receipt-tile-mismatch

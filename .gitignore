@@ -1,0 +1,74 @@
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Generated native folders (Continuous Native Generation: `npx expo prebuild` recreates them)
+/ios
+/android
+# Build output of the local native module
+modules/**/android/build/
+modules/**/android/.gradle/
+modules/**/ios/build/
+
+# Environment files (only the documented template is committed)
+.env
+.env*
+!.env.example
+
+# Signing material and credentials
+*.keystore
+*.jks
+*.p8
+*.p12
+*.pem
+*.key
+*.mobileprovision
+*.cer
+google-services.json
+GoogleService-Info.plist
+
+# Native / build caches
+.kotlin/
+.gradle/
+*.orig.*
+*.tsbuildinfo
+
+# Metro
+.metro-health-check*
+
+# Logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+
+# Local databases
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Test receipt photos and screenshots (keep real receipts out of the repo)
+receipts/
+test-receipts/
+*.heic
+.maestro/**/*.png
+.maestro/**/*.jpg
+
+# OS and editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+example

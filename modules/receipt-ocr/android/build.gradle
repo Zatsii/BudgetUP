@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+
+group = 'expo.modules.receiptocr'
+version = '1.0.0'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+useCoreDependencies()
+useDefaultAndroidSdkVersions()
+
+android {
+  namespace "expo.modules.receiptocr"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  // Google ML Kit text recognition via Play services (the same library expo-text-extractor used).
+  implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.1'
+}
