@@ -4,6 +4,16 @@ A personal budget tracker and group expense splitter for iOS and Android (web to
 Expo and React Native. Everything runs on the phone: no account, no backend, no API keys, and
 receipt scanning works offline.
 
+> **Work in progress:** BudgetUP is still being developed. Newer builds with upgraded
+> functionality and new features may be released in the future.
+
+## Download
+
+Android: download `BudgetUP.apk` from the
+[latest release](https://github.com/Zatsii/BudgetUP/releases/latest) and open it on your phone
+to install (allow installing from your browser when asked). Check the
+[Releases page](https://github.com/Zatsii/BudgetUP/releases) for newer builds.
+
 ## Features
 
 - **Monthly budget**: set a limit per month, add, edit and delete expenses, and see spent /
